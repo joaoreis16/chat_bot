@@ -1,0 +1,88 @@
+<div class="row" >
+
+    <div class="col-md-12 text-center container" style="top: 10px">
+        <div class="panel panel-default">
+
+            <div class="box box-success direct-chat direct-chat-success">
+
+                <div class="box-body" style = "height: 540px; ">
+                    <!-- Conversations are loaded here -->
+                    <div class="direct-chat-messages">
+
+                        <ng-container *ngFor="let chat of conversations; let i = index; first as isFirst; last as isLast">
+                           
+                            <!-- Bot message -->
+                            <div class="direct-chat-msg" *ngIf="chat?.is_me == false">
+                                <div class="direct-chat-info clearfix">
+                                    <span class="direct-chat-name pull-left" style="float: left"> SpotonBot</span>
+                                </div>
+                                <img class="direct-chat-img" src="../../../assets/bot.png"
+                                    alt="Message User Image"><!-- /.direct-chat-img -->
+
+                                    <div class="direct-chat-text" style="display: flex; justify-content: space-between; float: left; background-color: rgb(232, 232, 236);">
+                                    
+                                    {{chat?.body}}
+
+                                </div>
+                            </div>
+
+                        
+                            <!-- My messages -->
+                            <div class="direct-chat-msg right" *ngIf="chat?.is_me">
+                                <img class="direct-chat-img" src="../../../assets/me.jpg"
+                                    alt="Message User Image">
+                                <div class="direct-chat-text" style=" display: flex; justify-content: space-between; float: right;">
+                                    {{chat?.body}}
+
+                                    
+                                </div>
+                            </div>
+
+                        </ng-container>
+                        <!-- <div *ngIf="ratings_flag">
+                            <button type="button" class="btn btn-primary" style="margin-left:60%" (click)="rating('1')"> Yes </button>
+                            <button type="button" class="btn btn-primary" style="margin-left:60%" (click)="rating('0')"> No </button>
+                        </div>
+                        <div *ngIf="fb_flag">
+                            <button type="button" class="btn btn-primary" style="margin-left:60%" (click)="feedback('1')"> 1 </button>
+                            <button type="button" class="btn btn-primary" style="margin-left:60%" (click)="feedback('2')"> 2 </button>
+                            <button type="button" class="btn btn-primary" style="margin-left:60%" (click)="feedback('3')"> 3 </button>
+                            <button type="button" class="btn btn-primary" style="margin-left:60%" (click)="feedback('4')"> 4 </button>
+                            <button type="button" class="btn btn-primary" style="margin-left:60%" (click)="feedback('5')"> 5 </button>
+                        </div> -->
+                        <div style="margin-left:5%; width: 90%;" >
+
+                            <ngb-carousel *ngIf="carousel_flag">
+                                <ng-template ngbSlide *ngFor="let flight of flights" >
+                                    <div class="ticket" style="display:flex; ">
+                                        
+                                        <app-ticket [flight]="flight" class="himself"></app-ticket>
+
+                                    </div>
+                                </ng-template>
+            
+                            </ngb-carousel>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div>
+                    
+                </div>
+
+                <div class="box-footer">
+                    <div class="input-group" style="display:flex">
+                        <button type="button" class="btn btn-outline-primary"  (click)="getNearbyAirport()"> <i class="fas fa-location-circle"></i> Get Nearest Airport </button>
+                        <input type="text" name="message" (keyup.enter)="sendMessage()" [(ngModel)]="message" placeholder="Type message" class="form-control">
+                        <span class="input-group-btn">
+                            <button (click)="sendMessage()" class="btn btn-default btn-flat">Send</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
